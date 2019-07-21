@@ -1,4 +1,3 @@
-
 #import pandas to import datasets
 import pandas as pd
 import numpy as np
@@ -33,7 +32,7 @@ def gradient_decent(x_train, y_train, slopes, intercept, LearningRate = 0.01):
     for i in range(len(y_train)):     
         #yp is the predicted value
         yp = (np.dot(x_train[i,:],slopes)) + intercept
-        print(yp)
+        
        
         for j in range(x_train.shape[1]):
             
@@ -43,7 +42,7 @@ def gradient_decent(x_train, y_train, slopes, intercept, LearningRate = 0.01):
     x_gradients = x_gradients * (2/len(y_train))
     c_gradient = c_gradient * (2/len(y_train))
     
-    print(x_gradients,c_gradient)
+   
     updated_x_gradient = slopes - (LearningRate)*x_gradients
     updated_c_gradient = intercept - (LearningRate)*c_gradient
     
