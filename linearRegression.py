@@ -74,7 +74,7 @@ def LinearRegression(x_train,   y_train,    LearningRate = 0.01, iteration = 100
     loss = R_sq_value(slopes, intercept, x_train, y_train)
 
     #we update the slopes using their Gradient values 
-    #Gradient is a vector with the partial differential of the differnt 
+    #Gradient is a vector with the partial differential of the function (in our case the error value) with respect to differnt variables
     for i in range(iteration):
         #print("itr "+str(i))
         slopes, intercept = gradient_decent(x_train, y_train, slopes, intercept)
