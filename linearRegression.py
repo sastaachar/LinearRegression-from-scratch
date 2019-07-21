@@ -115,8 +115,7 @@ if __name__ == "__main__":
     #split the data
     x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = 0.2,random_state=0)
     
-    from sklearn.preprocessing import StandardScaler
-    sc = StandardScaler()
+   
     x_train = scale(x_train)
     x_test = scale(x_test)
     slope,intercept  = LinearRegression(x_train,y_train) 
