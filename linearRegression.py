@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jul 21 14:43:10 2019
-
-@author: admin
-"""
 
 #import pandas to import datasets
 import pandas as pd
@@ -19,7 +13,7 @@ def mx(x,slopes):
 
 def R_sq_value(slopes, intercept, x_train, y_train):
     
-    #change to int64 , cause float32 sometimes gives wrong answers due to overflow \(^o^)/
+    #may need to change to int64 , cause float32 sometimes gives wrong answers due to overflow \(^o^)/
     #x_train = x_train.astype("int64")
     sum_of_errors = 0
     
@@ -32,18 +26,17 @@ def R_sq_value(slopes, intercept, x_train, y_train):
     return sum_of_errors
 
 def gradient_decent(x_train, y_train, slopes, intercept, LearningRate = 0.01):
-   # print(slopes,intercept)
+   
     x_gradients = np.zeros(x_train.shape[1])
     c_gradient = 0
-    #print(x_gradients,c_gradient)
+    
     for i in range(len(y_train)):     
         #yp is the predicted value
         yp = (np.dot(x_train[i,:],slopes)) + intercept
         print(yp)
-        #print((np.dot(x_train[i,:],slopes)),x_train[i,:],slopes)
-        #print("i "+str(i))
+       
         for j in range(x_train.shape[1]):
-            #print("j "+str(j))
+            
             x_gradients[j] += -(x_train[i,j])*(y_train[i] - yp)
         c_gradient  += (-(y_train[i] - yp))
     
@@ -54,12 +47,12 @@ def gradient_decent(x_train, y_train, slopes, intercept, LearningRate = 0.01):
     updated_x_gradient = slopes - (LearningRate)*x_gradients
     updated_c_gradient = intercept - (LearningRate)*c_gradient
     
-    #print(updated_x_gradient,updated_c_gradient)
+   
     return [updated_x_gradient,updated_c_gradient]
 
     
 def LinearRegression(x_train,   y_train,    LearningRate = 0.01, iteration = 10000):
-   # print(x_train,y_train)
+   
     # y = m1*x1 + m2*x2 + m3*x3 +....+ mn*xn + c  (n is the size of x_train i.e no of features), c is the intercept
     n = x_train.shape[1]
     intercept  = 0
@@ -76,7 +69,7 @@ def LinearRegression(x_train,   y_train,    LearningRate = 0.01, iteration = 100
     #we update the slopes using their Gradient values 
     #Gradient is a vector with the partial differential of the function (in our case the error value) with respect to differnt variables
     for i in range(iteration):
-        #print("itr "+str(i))
+        
         slopes, intercept = gradient_decent(x_train, y_train, slopes, intercept)
         print(R_sq_value(slopes, intercept, x_train, y_train))
         
